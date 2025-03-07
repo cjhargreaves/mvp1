@@ -156,20 +156,20 @@ export default function Home() {
   return (
     <main className="min-h-screen font-normal">
       {/* Home Link - Fixed position */}
-      <Link href="/" className="fixed left-8 top-8 text-xl text-white hover:opacity-80 transition-opacity z-50 font-normal">
+      <Link href="/" className="fixed left-4 md:left-8 top-4 md:top-8 text-lg md:text-xl text-white hover:opacity-80 transition-opacity z-50 font-normal">
         r/DUPE.it
       </Link>
 
-      <div className="bg-[#F77192] p-8 pt-32 pb-20">
+      <div className="bg-[#F77192] p-4 md:p-8 pt-24 md:pt-32 pb-12 md:pb-20">
         <div className="max-w-4xl mx-auto relative">
           {/* Header */}
-          <div className="text-center mb-20">
-            <h1 className="text-5xl font-extrabold mb-6">FIND DUPES</h1>
+          <div className="text-center mb-12 md:mb-20">
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 md:mb-6">FIND DUPES</h1>
             <button
               type="submit"
               form="dupeForm"
               disabled={isSubmitting}
-              className="text-3xl font-normal bg-white rounded-2xl px-8 py-3 hover:bg-opacity-90 transition-all disabled:opacity-80 disabled:cursor-not-allowed"
+              className="text-xl md:text-3xl font-normal bg-white rounded-2xl px-6 md:px-8 py-2 md:py-3 hover:bg-opacity-90 transition-all disabled:opacity-80 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit a Request'}
             </button>
@@ -182,7 +182,7 @@ export default function Home() {
                 <span className="block sm:inline">{submitError}</span>
               </div>
             )}
-            <div className="flex items-start gap-16 relative">
+            <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16 relative">
               {/* Step 1 */}
               <div className="flex-1 z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
@@ -346,13 +346,13 @@ export default function Home() {
       </div>
 
       {/* Demo Section with new background color */}
-      <div className="bg-[#FFD5DF] p-8">
+      <div className="bg-[#FFD5DF] p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
           {/* Demo Section */}
           <div className="mt-8">
             <h2 className="text-4xl text-center mb-8">Demo</h2>
             <div className="bg-white rounded-lg p-8">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Original Product */}
                 <div className="text-center">
                   <div className="text-2xl mb-4 flex justify-center">
