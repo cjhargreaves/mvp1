@@ -14,6 +14,7 @@ export default function Home() {
     phone: ''
   });
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [uploadType, setUploadType] = useState<'file' | 'url'>('file');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
@@ -29,8 +30,14 @@ export default function Home() {
     setSubmitError('');
 
     // Validate required fields
-    if (!selectedImage) {
+    if (uploadType === 'file' && !selectedImage) {
       setSubmitError('Please upload a product image');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (uploadType === 'url' && !formData.productUrl?.trim()) {
+      setSubmitError('Please enter a product URL');
       setIsSubmitting(false);
       return;
     }
@@ -62,17 +69,29 @@ export default function Home() {
     }
 
     try {
-      // First upload the image to Supabase storage
-      const { data: storageData, error: storageError } = await supabase.storage
-        .from('product-images')
-        .upload(`${Date.now()}-${selectedImage.name}`, selectedImage);
+      let imageUrl = null;
 
-      if (storageError) {
-        console.error('Image upload error:', storageError);
-        throw new Error('Failed to upload image');
+      if (uploadType === 'file' && selectedImage) {
+        // Upload image to mvp_bucket
+        const { data: storageData, error: storageError } = await supabase.storage
+          .from('mvp_bucket')
+          .upload(`${Date.now()}-${selectedImage.name}`, selectedImage);
+
+        if (storageError) {
+          console.error('Image upload error:', storageError);
+          throw new Error('Failed to upload image');
+        }
+
+        // Get the public URL for the uploaded image
+        const { data: publicUrlData } = supabase.storage
+          .from('mvp_bucket')
+          .getPublicUrl(storageData.path);
+
+        imageUrl = publicUrlData.publicUrl;
+      } else if (uploadType === 'url') {
+        imageUrl = formData.productUrl.trim();
       }
 
-      const imageUrl = storageData?.path || null;
 
       // Then insert the form data with the image URL
       const { data, error } = await supabase
@@ -149,7 +168,7 @@ export default function Home() {
               type="submit"
               form="dupeForm"
               disabled={isSubmitting}
-              className="text-3xl font-normal bg-white rounded-2xl px-8 py-3 hover:bg-opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+              className="text-3xl font-normal bg-white rounded-2xl px-8 py-3 hover:bg-opacity-90 transition-all disabled:opacity-80 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit a Request'}
             </button>
@@ -169,9 +188,47 @@ export default function Home() {
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">1</span>
                   <h3 className="font-bold text-lg">Upload Product(s)</h3>
                 </div>
-                <div className="relative">
-                  <div className="flex flex-col bg-white rounded-2xl h-[212px]">
-                    <label className="flex flex-col items-center justify-center h-full cursor-pointer">
+                <div className="relative space-y-4">
+                  <div className="flex gap-4 justify-center">
+                    <button
+                      type="button"
+                      onClick={() => setUploadType('file')}
+                      className={`px-4 py-2 rounded-lg ${
+                        uploadType === 'file'
+                          ? 'bg-[#F77192] text-white'
+                          : 'bg-white text-[#F77192]'
+                      }`}
+                    >
+                      Upload Image
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setUploadType('url')}
+                      className={`px-4 py-2 rounded-lg ${
+                        uploadType === 'url'
+                          ? 'bg-[#F77192] text-white'
+                          : 'bg-white text-[#F77192]'
+                      }`}
+                    >
+                      Enter URL
+                    </button>
+                  </div>
+                  
+                  {uploadType === 'url' ? (
+                    <div className="relative">
+                      <input
+                        type="url"
+                        name="productUrl"
+                        placeholder="Enter product image URL"
+                        value={formData.productUrl}
+                        onChange={handleChange}
+                        className="w-full h-12 px-4 bg-white rounded-2xl focus:outline-none text-gray-500"
+                      />
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#F77192]">*</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col bg-white rounded-2xl h-[212px]">
+                      <label className="flex flex-col items-center justify-center h-full cursor-pointer">
                       {selectedImage ? (
                         <div className="relative w-full h-full p-4 flex flex-col items-center justify-center">
                           <img
@@ -201,6 +258,7 @@ export default function Home() {
                       <span className="absolute right-4 top-4 text-[#F77192]">*</span>
                     </label>
                   </div>
+                  )}
                 </div>
               </div>
 
