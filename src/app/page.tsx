@@ -306,7 +306,7 @@ export default function Home() {
               <div className="flex-1 w-full lg:w-auto z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">3</span>
-                  <h3 className="font-bold text-lg">We'll find it!</h3>
+                  <h3 className="font-bold text-lg">We&apos;ll find it!</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="relative">
@@ -335,7 +335,7 @@ export default function Home() {
                     {isSubmitting ? (
                       <span>Submitting...</span>
                     ) : (
-                      <span>We'll text you with our hand-selected dupes!</span>
+                      <span>We&apos;ll text you with our hand-selected dupes!</span>
                     )}
                   </div>
                 </div>
