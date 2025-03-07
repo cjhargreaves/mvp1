@@ -182,9 +182,9 @@ export default function Home() {
                 <span className="block sm:inline">{submitError}</span>
               </div>
             )}
-            <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16 relative">
+            <div className="flex items-start gap-16 relative">
               {/* Step 1 */}
-              <div className="flex-1 z-10">
+              <div className="flex-1 w-full lg:w-auto z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">1</span>
                   <h3 className="font-bold text-lg">Upload Product(s)</h3>
@@ -266,7 +266,7 @@ export default function Home() {
               </div>
 
               {/* Step 2 */}
-              <div className="flex-1 z-10">
+              <div className="flex-1 w-full lg:w-auto z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">2</span>
                   <h3 className="font-bold text-lg">Preferences???</h3>
@@ -303,7 +303,7 @@ export default function Home() {
               </div>
 
               {/* Step 3 */}
-              <div className="flex-1 z-10">
+              <div className="flex-1 w-full lg:w-auto z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">3</span>
                   <h3 className="font-bold text-lg">We&apos;ll find it!</h3>
@@ -352,7 +352,7 @@ export default function Home() {
           <div className="mt-8">
             <h2 className="text-4xl text-center mb-8">Demo</h2>
             <div className="bg-white rounded-lg p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-8">
                 {/* Original Product */}
                 <div className="text-center">
                   <div className="text-2xl mb-4 flex justify-center">
@@ -373,7 +373,7 @@ export default function Home() {
                     />
                   </div>
                   <h3 className="font-bold mb-2">Long Slip Dress</h3>
-                  <div className="flex justify-center gap-2 mb-2">
+                  <div className="flex flex-wrap justify-center gap-2 mb-2">
                     <span className="bg-purple-600 text-white px-2 py-1 rounded text-sm">91% Modal</span>
                     <span className="bg-green-500 text-white px-2 py-1 rounded text-sm">9% Elastane</span>
                   </div>
@@ -400,7 +400,7 @@ export default function Home() {
                     />
                   </div>
                   <h3 className="font-bold mb-2">Slip Maxi Dress</h3>
-                  <div className="flex justify-center gap-2 mb-2">
+                  <div className="flex flex-wrap justify-center gap-2 mb-2">
                     <span className="bg-purple-600 text-white px-2 py-1 rounded text-sm">95% Modal</span>
                     <span className="bg-amber-700 text-white px-2 py-1 rounded text-sm">5% Spandex</span>
                   </div>
