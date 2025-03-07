@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
 export default function Home() {
@@ -155,9 +156,9 @@ export default function Home() {
   return (
     <main className="min-h-screen font-normal">
       {/* Home Link - Fixed position */}
-      <a href="/" className="fixed left-8 top-8 text-xl text-white hover:opacity-80 transition-opacity z-50 font-normal">
+      <Link href="/" className="fixed left-8 top-8 text-xl text-white hover:opacity-80 transition-opacity z-50 font-normal">
         r/DUPE.it
-      </a>
+      </Link>
 
       <div className="bg-[#F77192] p-8 pt-32 pb-20">
         <div className="max-w-4xl mx-auto relative">
@@ -231,9 +232,11 @@ export default function Home() {
                       <label className="flex flex-col items-center justify-center h-full cursor-pointer">
                       {selectedImage ? (
                         <div className="relative w-full h-full p-4 flex flex-col items-center justify-center">
-                          <img
+                          <Image
                             src={URL.createObjectURL(selectedImage)}
                             alt="Preview"
+                            width={140}
+                            height={140}
                             className="max-h-[140px] object-contain mb-2"
                           />
                           <p className="text-sm text-gray-500 truncate w-full text-center">
@@ -303,7 +306,7 @@ export default function Home() {
               <div className="flex-1 z-10">
                 <div className="bg-[#FFD5DF] rounded-2xl p-4 mb-6 flex items-center">
                   <span className="text-3xl text-[#F77192] font-bold mr-3 font-[var(--font-mundo-serif)]">3</span>
-                  <h3 className="font-bold text-lg">We'll find it!</h3>
+                  <h3 className="font-bold text-lg">We&apos;ll find it!</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="relative">
@@ -332,7 +335,7 @@ export default function Home() {
                     {isSubmitting ? (
                       <span>Submitting...</span>
                     ) : (
-                      <span>We'll text you with our hand-selected dupes!</span>
+                      <span>We&apos;ll text you with our hand-selected dupes!</span>
                     )}
                   </div>
                 </div>
