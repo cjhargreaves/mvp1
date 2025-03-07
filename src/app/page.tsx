@@ -154,7 +154,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen font-normal">
+    <main className="min-h-screen font-normal text-[#4d4d4d]">
       {/* Home Link - Fixed position */}
       <Link href="/" className="fixed left-4 md:left-8 top-4 md:top-8 text-lg md:text-xl text-white hover:opacity-80 transition-opacity z-50 font-normal">
         r/DUPE.it
@@ -164,12 +164,12 @@ export default function Home() {
         <div className="max-w-4xl mx-auto relative">
           {/* Header */}
           <div className="text-center mb-12 md:mb-20">
-            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 md:mb-6">FIND DUPES</h1>
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 md:mb-6 text-[#1a1a1a]">FIND DUPES</h1>
             <button
               type="submit"
               form="dupeForm"
               disabled={isSubmitting}
-              className="text-xl md:text-3xl font-normal bg-white rounded-2xl px-6 md:px-8 py-2 md:py-3 hover:bg-opacity-90 transition-all disabled:opacity-80 disabled:cursor-not-allowed"
+              className="text-xl md:text-3xl font-normal bg-white text-[#F77192] rounded-2xl px-6 md:px-8 py-2 md:py-3 hover:bg-[#FFD5DF] transition-all duration-200 disabled:opacity-80 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit a Request'}
             </button>
@@ -193,25 +193,26 @@ export default function Home() {
                   <div className="flex gap-4 justify-center">
                     <button
                       type="button"
-                      onClick={() => setUploadType('file')}
-                      className={`px-4 py-2 rounded-lg ${
-                        uploadType === 'file'
-                          ? 'bg-[#F77192] text-white'
-                          : 'bg-white text-[#F77192]'
-                      }`}
-                    >
-                      Upload Image
-                    </button>
-                    <button
-                      type="button"
+
                       onClick={() => setUploadType('url')}
-                      className={`px-4 py-2 rounded-lg ${
+                      className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                         uploadType === 'url'
-                          ? 'bg-[#F77192] text-white'
-                          : 'bg-white text-[#F77192]'
+                          ? 'bg-white text-[#F77192] hover:bg-[#FFD5DF]'
+                          : 'bg-[#F77192] text-white hover:bg-[#e6607d] opacity-60'
                       }`}
                     >
                       Enter URL
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setUploadType('file')}
+                      className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                        uploadType === 'file'
+                          ? 'bg-white text-[#F77192] hover:bg-[#FFD5DF]'
+                          : 'bg-[#F77192] text-white hover:bg-[#e6607d] opacity-60'
+                      }`}
+                    >
+                      Upload Image
                     </button>
                   </div>
                   
@@ -223,7 +224,7 @@ export default function Home() {
                         placeholder="Enter product image URL"
                         value={formData.productUrl}
                         onChange={handleChange}
-                        className="w-full h-12 px-4 bg-white rounded-2xl focus:outline-none text-gray-500"
+                        className="w-full h-12 px-4 bg-white rounded-2xl focus:outline-none text-[#1a1a1a]"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#F77192]">*</span>
                     </div>
@@ -350,7 +351,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           {/* Demo Section */}
           <div className="mt-8">
-            <h2 className="text-4xl text-center mb-8">Demo</h2>
+            <h2 className="text-6xl text-center mb-8 font-bold text-[#F77192]">Demo</h2>
             <div className="bg-white rounded-lg p-4 lg:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Original Product */}
